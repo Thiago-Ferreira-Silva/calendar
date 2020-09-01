@@ -9,5 +9,7 @@ export default {
 </script>
 
 <style>
-
+.header {
+    background-color: aqua;
+}
 </style>

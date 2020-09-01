@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style>
-
+.calendar {
+    background-color: brown;
+}
 </style>
