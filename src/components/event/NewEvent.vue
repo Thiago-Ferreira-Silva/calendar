@@ -1,17 +1,28 @@
 <template>
     <div class="newEvent">
-        <h1>new event</h1>
+        
     </div>
 </template>
 
 <script>
 export default {
-    name: 'NewEvent'
+    name: 'NewEvent',
+    data: function() {
+        return {
+            name: null,
+            start: null,
+            end: null,
+            description: null
+        }
+    }
 }
 </script>
 
 <style>
 .newEvent {
-    background-color: chartreuse;
+    background-color: #1a1a1a;
+
+    height: 88vh;
+    width: 100vw;
 }
 </style>
