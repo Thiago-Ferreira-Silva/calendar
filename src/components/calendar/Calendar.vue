@@ -1,6 +1,6 @@
 <template>
     <div class="calendar">
-        <h1>calendar</h1>
+        
     </div>
 </template>
 
@@ -10,8 +10,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 .calendar {
-    background-color: brown;
+    background-color: #1a1a1a;
+    width: 100vw;
+    height: 88vh;
 }
 </style>

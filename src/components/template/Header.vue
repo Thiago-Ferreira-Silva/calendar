@@ -15,6 +15,7 @@ export default {
 <style scoped>
 .header {
     background-color: #262626;
+    margin-bottom: solid 2px #000;
     height: 12vh;
 
     display: flex;
