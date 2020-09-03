@@ -16,13 +16,11 @@ export default {
     name: 'Events',
     data: function() {
         return {
-            events: []
+            events: {}
         }
     },
     created () {
-        //temporário
-        this.events[0] = JSON.parse(localStorage.getItem('Evento'))
-        this.events[1] = JSON.parse(localStorage.getItem('Criando um evento'))
+        this.events = JSON.parse(localStorage.getItem('__calendar_events'))
     }
 }
 </script>

@@ -32,7 +32,17 @@ export default {
         createEvent () {
             if (!this.name || !this.start || !this.end || !this.description) return
 
-            localStorage.setItem(this.name, JSON.stringify(this.$data))
+            const eventsString = localStorage.getItem('__calendar_events')
+            //talvez colocar __calendar_events_${dia do evento}
+            let events = {}
+
+            if (eventsString) {
+                events = JSON.parse(eventsString) 
+            }
+
+            events[this.name] = this.$data
+
+            localStorage.setItem('__calendar_events', JSON.stringify(events))
 
             this.$router.push('/')
             /*
