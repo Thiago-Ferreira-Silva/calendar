@@ -1,6 +1,8 @@
 <template>
     <div class="calendar">
         <router-link to="/new-event">New Event</router-link>
+        <br>
+        <router-link to="/events">Events</router-link>
     </div>
 </template>
 

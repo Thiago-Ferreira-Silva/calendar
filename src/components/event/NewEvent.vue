@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .newEvent {
     background-color: #1a1a1a;
 
