@@ -1,12 +1,18 @@
 <template>
-    <div class="day">
+    <div class="day" @click="goToMenu">
         teste
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Day'
+    name: 'Day',
+    methods: {
+        goToMenu() {
+            this.$router.push('/menu')
+        }
+    }
+    //dê um jeito de colocar as datas e organizar os meses
 }
 </script>
 
@@ -17,7 +23,6 @@ export default {
         align-items: flex-start;
 
         border-bottom: solid 2px #000;
-        margin: 0;
         width: 13vh;
         height: 13vh;
     }

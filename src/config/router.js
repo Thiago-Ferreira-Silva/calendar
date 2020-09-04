@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 import Calendar from '../components/calendar/Calendar'
 import NewEvent from '../components/event/NewEvent'
 import Events from '../components/event/Events'
+import DayMenu from '../components/event/DayMenu'
+
+// o router é temporário
 
 Vue.use(VueRouter)
 
@@ -22,6 +25,11 @@ const routes = [
         name: 'events',
         path: '/events',
         component: Events
+    },
+    {
+        name: 'dayMenu',
+        path: '/menu',
+        component: DayMenu
     }
 ]
 
