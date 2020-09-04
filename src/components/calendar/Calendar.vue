@@ -1,14 +1,51 @@
 <template>
     <div class="calendar">
-        <router-link to="/new-event">New Event</router-link>
-        <br>
-        <router-link to="/events">Events</router-link>
+        <div class="days">
+            <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        </div>
     </div>
 </template>
 
 <script>
+import Day from '../day/Day'
+
 export default {
-    name: 'Calendar'
+    name: 'Calendar',
+    components: { Day }
 }
 </script>
 
@@ -18,5 +55,17 @@ export default {
     background-color: #1a1a1a;
     width: 100vw;
     height: 88vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.days {
+    width: 95vh;
+    height: 81vh;
+
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>
