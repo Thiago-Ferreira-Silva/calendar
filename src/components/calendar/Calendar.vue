@@ -7,18 +7,33 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Day from "../day/Day";
 
 export default {
   name: "Calendar",
   components: { Day },
+  computed: mapState(['settingDefault']),
   data: function () {
       return {
           year: new Date().getFullYear(),
           month: new Date().getMonth(),
           day: new Date().getDate(),
-          months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       }
+  },
+  watch() {
+      settingDefault: function(setting) {
+          if (setting === true) {
+              Object.assign(this.$data, this.$options.data())
+              this.$store.commit('setDefault', false)
+              console.log(setting)
+          }
+      }
+  },
+  created () {
+      this.$store.commit('setMonth', this.month)
+      this.$store.commit('setYear', this.year)
   }
 };
 </script>

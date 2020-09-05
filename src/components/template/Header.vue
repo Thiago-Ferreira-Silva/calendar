@@ -2,13 +2,29 @@
     <div class="header">
         <i class="fa fa-arrow-up fa-2x"></i>
         <i class="fa fa-arrow-down fa-2x"></i>
-        <div class="date">mês e ano</div>
+        <div class="title" @click="defaultDate">
+            <div>{{ months[month] }}</div>
+            <div class="year">{{ year }}</div>
+        </div>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-    name: 'Header'
+    name: 'Header',
+    computed: mapState(['month', 'year']),
+    data: function () {
+        return {
+            months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    },
+    methods: {
+        defaultDate() {
+            this.$store.commit('setDefault', true)
+        }
+    }
 }
 </script>
 
@@ -40,7 +56,7 @@ i:active {
     background-color: #0168ad;
 }
 
-.date {
+.title {
     display: flex;
     align-items: center;
 
@@ -48,5 +64,13 @@ i:active {
 
     font-size: 2rem;
     color: #136db3;
+}
+
+.title:hover {
+    cursor: pointer;
+}
+
+.year {
+    margin-left: 5vw;
 }
 </style>
