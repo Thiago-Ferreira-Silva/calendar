@@ -31,6 +31,14 @@ export default {
             if (upOrDown === 'down') {
                 this.$store.commit('setMonth', this.month - 1)
             }
+            if (this.month < 0) {
+                this.$store.commit('setYear', this.year - 1)
+                this.$store.commit('setMonth', 11)
+            }
+            if (this.month > 11) {
+                this.$store.commit('setYear', this.year + 1)
+                this.$store.commit('setMonth', 0)
+            }
         }
     }
 }
