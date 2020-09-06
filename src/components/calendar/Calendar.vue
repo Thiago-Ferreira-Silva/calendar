@@ -25,8 +25,8 @@ export default {
     watch: {
         settingDefault: function(setting) {
             if(setting) {
-                //não está funcionando
                 Object.assign(this.$data, this.$options.data())
+                console.log('setting')
                 this.$store.commit('setDefault', false)
             }
         },
@@ -35,12 +35,18 @@ export default {
         },
         year: function(newYear) {
                 this.calendar_year = newYear
+        },
+        calendar_year: function(newYear) {
+          this.$store.commit('setYear', newYear)
+        },
+        calendar_month: function(newMonth) {
+          this.$store.commit('setMonth', newMonth)
         }
     },
   created () {
       this.$store.commit('setMonth', this.calendar_month)
       this.$store.commit('setYear', this.calendar_year)
-  }
+  } //melhore isso, está muito grande e feio
 };
 </script>
 
