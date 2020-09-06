@@ -22,15 +22,14 @@ export default {
           day: new Date().getDate(),
       }
   },
-  watch() {
-      settingDefault: function(setting) {
-          if (setting === true) {
-              Object.assign(this.$data, this.$options.data())
-              this.$store.commit('setDefault', false)
-              console.log(setting)
-          }
-      }
-  },
+    watch: {
+        settingDefault: function(setting) {
+            if(setting === true) {
+                Object.assign(this.$data, this.$options.data())
+                this.$store.commit('setDefault', false)
+            }
+        }
+    },
   created () {
       this.$store.commit('setMonth', this.month)
       this.$store.commit('setYear', this.year)
