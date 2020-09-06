@@ -1,7 +1,7 @@
 <template>
     <div class="header">
-        <i class="fa fa-arrow-up fa-2x"></i>
-        <i class="fa fa-arrow-down fa-2x"></i>
+        <i class="fa fa-arrow-up fa-2x" @click="changeMonth('up')"></i>
+        <i class="fa fa-arrow-down fa-2x" @click="changeMonth('down')"></i>
         <div class="title" @click="defaultDate">
             <div>{{ months[month] }}</div>
             <div class="year">{{ year }}</div>
@@ -23,6 +23,14 @@ export default {
     methods: {
         defaultDate() {
             this.$store.commit('setDefault', true)
+        },
+        changeMonth(upOrDown) {
+            if (upOrDown === 'up') {
+                this.$store.commit('setMonth', this.month + 1)
+            }
+            if (upOrDown === 'down') {
+                this.$store.commit('setMonth', this.month - 1)
+            }
         }
     }
 }

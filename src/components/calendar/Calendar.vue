@@ -14,25 +14,32 @@ import Day from "../day/Day";
 export default {
   name: "Calendar",
   components: { Day },
-  computed: mapState(['settingDefault']),
+  computed: mapState(['settingDefault', 'month', 'year']),
   data: function () {
       return {
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
+          calendar_year: new Date().getFullYear(),
+          calendar_month: new Date().getMonth(), //isso é realmente necessário? tente tirar ou deixar mais elegante
           day: new Date().getDate(),
       }
   },
     watch: {
         settingDefault: function(setting) {
-            if(setting === true) {
+            if(setting) {
+                //não está funcionando
                 Object.assign(this.$data, this.$options.data())
                 this.$store.commit('setDefault', false)
             }
+        },
+        month: function(newMonth) {
+            this.calendar_month = newMonth
+        },
+        year: function(newYear) {
+                this.calendar_year = newYear
         }
     },
   created () {
-      this.$store.commit('setMonth', this.month)
-      this.$store.commit('setYear', this.year)
+      this.$store.commit('setMonth', this.calendar_month)
+      this.$store.commit('setYear', this.calendar_year)
   }
 };
 </script>
