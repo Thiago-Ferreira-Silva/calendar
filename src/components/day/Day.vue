@@ -12,7 +12,7 @@ export default {
             this.$router.push('/menu')
         }
     }
-    //dê um jeito de colocar as datas e organizar os meses
+    //dê um jeito de colocar as datas e organizar os meses; tente usar props para colocar as informações no Day e dar um jeito de armazená-las no $store
 }
 </script>
 
