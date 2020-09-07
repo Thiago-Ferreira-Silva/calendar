@@ -18,8 +18,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: 'NewEvent',
+    computed: mapState(['date']),
     data: function() {
         return {
             name: null,
@@ -32,27 +34,19 @@ export default {
         createEvent () {
             if (!this.name || !this.start || !this.end || !this.description) return
 
-            const eventsString = localStorage.getItem('__calendar_events')
-            //talvez colocar __calendar_events_${dia do evento}
-            let events = {}
+            const eventsString = localStorage.getItem(`__calendar_events_${this.date}`)
+            let events = []
 
             if (eventsString) {
                 events = JSON.parse(eventsString) 
             }
+            events.push(this.$data)
 
-            events[this.name] = this.$data
-
-            localStorage.setItem('__calendar_events', JSON.stringify(events))
+            localStorage.setItem(`__calendar_events_${this.date}`, JSON.stringify(events))
 
             this.$router.push('/')
             /*
             me parece uma ótima ideia deixar de usar o router e colocar 'NewEvent' e 'Events' como janelas flutuantes com v-if e props
-            
-            os dias do mês podem ser gerados com o v-for tendo um componente separado para eles onde devem estar esses dois
-        
-            mas ainda me parece complicado demais organizar o calendádio
-            
-            procure meios de fazer isso 
             */
         },
         cancel () {

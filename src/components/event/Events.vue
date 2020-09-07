@@ -12,15 +12,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
     name: 'Events',
+    computed: mapState(['date']),
     data: function() {
         return {
-            events: {}
+            events: []
         }
     },
     created () {
-        this.events = JSON.parse(localStorage.getItem('__calendar_events'))
+        this.events = JSON.parse(localStorage.getItem(`__calendar_events_${this.date}`))
+        // ainda está aparecento em outros dias
     }
 }
 </script>
