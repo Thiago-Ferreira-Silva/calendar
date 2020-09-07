@@ -1,18 +1,23 @@
 <template>
     <div class="day" @click="goToMenu">
-        teste
+        {{ day }}/{{ month + 1 }}
     </div>
 </template>
 
 <script>
 export default {
     name: 'Day',
+    props: {
+        day: { type: Number},
+        month: { type: Number },
+        year: { type: Number }
+    },
     methods: {
         goToMenu() {
             this.$router.push('/menu')
+            this.$store.commit('setDate', { day: this.day, month: this.month, year: this.year })
         }
     }
-    //dê um jeito de colocar as datas e organizar os meses; tente usar props para colocar as informações no Day e dar um jeito de armazená-las no $store
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="calendar">
     <div class="days">
-      <Day v-for="n in months[month]" :key="n"/>
+      <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
     </div>
   </div>
 </template>
