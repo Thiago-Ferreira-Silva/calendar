@@ -1,8 +1,21 @@
 <template>
   <div class="calendar">
-    <div class="days">
-      <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
+    <Events />
+    <div class="month">
+      <div class="week">
+        <div class="day-of-week">S</div>
+        <div class="day-of-week">M</div>
+        <div class="day-of-week">T</div>
+        <div class="day-of-week">W</div>
+        <div class="day-of-week">T</div>
+        <div class="day-of-week">F</div>
+        <div class="day-of-week">S</div>
+      </div>
+      <div class="days">
+        <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
+      </div>
     </div>
+    <NewEvent />
   </div>
 </template>
 
@@ -10,10 +23,12 @@
 import { mapState } from 'vuex'
 
 import Day from "../day/Day";
+import Events from '../event/Events'
+import NewEvent from '../event/NewEvent'
 
 export default {
   name: "Calendar",
-  components: { Day },
+  components: { Day, Events, NewEvent },
   computed: mapState(['settingDefault', 'month', 'year']),
   data: function () {
       return {
@@ -46,11 +61,12 @@ export default {
         },
         calendar_month: function(newMonth) {
           this.$store.commit('setMonth', newMonth)
-        } // talvez montar um grid para poder posicionar os dias e obter em qual dia da semana cai o primeiro dia do mês
+        }
     },
   created () {
       this.$store.commit('setMonth', this.calendar_month)
       this.$store.commit('setYear', this.calendar_year)
+      // quase lá, mas ainda precisa de adaptações
       if ( ( this.year % 4 == 0 && this.year % 100 != 0 ) || (this.year % 400 == 0) ) {
         this.months[1] = 29
       } else {
@@ -63,8 +79,7 @@ export default {
 <style scoped>
 .calendar {
   background-color: #1a1a1a;
-  width: 100vw;
-  height: 88vh;
+  min-height: 88vh;
 
   display: flex;
   justify-content: center;
@@ -75,7 +90,19 @@ export default {
   width: 95vh;
   height: 81vh;
 
+  display: grid;
+  grid-template-columns: repeat(7, 80px);
+  grid-template-rows: repeat(5, 80px);
+}
+
+.week {
+  width: 100%;
+  margin: 15px 0 30px 0;
+
   display: flex;
-  flex-wrap: wrap;
+}
+
+.day-of-week {
+  margin: 0 35px;
 }
 </style>

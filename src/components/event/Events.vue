@@ -23,16 +23,17 @@ export default {
         }
     },
     created () {
-        this.events = JSON.parse(localStorage.getItem(`__calendar_events_${this.date}`))
-        // ainda está aparecento em outros dias
+        this.events = JSON.parse(localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`))
     }
 }
 </script>
 
 <style>
 .events {
-    height: 88vh;
-    width: 100vw;
+    align-self: start;
+
+    width: 400px;
+    margin: 15px;
     background-color: #1a1a1a;
 
     display: flex;

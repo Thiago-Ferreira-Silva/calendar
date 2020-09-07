@@ -28,8 +28,8 @@ export default {
         align-items: flex-start;
 
         border-bottom: solid 2px #000;
-        width: 13vh;
-        height: 13vh;
+        width: 80px;
+        height: 80px;
     }
 
     .day:hover {

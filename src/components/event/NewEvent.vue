@@ -34,7 +34,7 @@ export default {
         createEvent () {
             if (!this.name || !this.start || !this.end || !this.description) return
 
-            const eventsString = localStorage.getItem(`__calendar_events_${this.date}`)
+            const eventsString = localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`)
             let events = []
 
             if (eventsString) {
@@ -42,7 +42,7 @@ export default {
             }
             events.push(this.$data)
 
-            localStorage.setItem(`__calendar_events_${this.date}`, JSON.stringify(events))
+            localStorage.setItem(`__calendar_events_${JSON.stringify(this.date)}`, JSON.stringify(events))
 
             this.$router.push('/')
             /*
@@ -61,8 +61,7 @@ export default {
 .newEvent {
     background-color: #1a1a1a;
 
-    height: 88vh;
-    width: 100vw;
+    padding: 50px;
 
     display: flex;
     flex-direction: column;
