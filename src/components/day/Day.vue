@@ -1,6 +1,6 @@
 <template>
     <div class="day" @click="createEvent">
-        {{ day }}/{{ month + 1 }}
+        {{ day }}
     </div>
 </template>
 

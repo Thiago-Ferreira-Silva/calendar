@@ -1,5 +1,6 @@
 <template>
     <div class="events">
+        <div class="date">{{ date.day }}/{{ date.month + 1 }}</div>
         <div class="event" v-for="event in events" :key="event.name">
             <div class="name">{{ event.name }}</div>
             <div class="time">
@@ -16,14 +17,23 @@ import { mapState } from 'vuex'
 
 export default {
     name: 'Events',
-    computed: mapState(['date']),
+    computed: mapState(['date', 'creatingEvent']),
     data: function() {
         return {
             events: []
         }
     },
-    created () {
-        this.events = JSON.parse(localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`))
+    watch: {
+        date: function (newDate) {
+            if (newDate) {
+                this.events = JSON.parse(localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`))
+            }
+        },
+        creatingEvent: function (creating) {
+            if (!creating) {
+                this.events = JSON.parse(localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`))
+            }
+        }
     }
 }
 </script>

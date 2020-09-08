@@ -33,7 +33,7 @@ export default {
   data: function () {
       return {
           calendar_year: new Date().getFullYear(),
-          calendar_month: new Date().getMonth(), //isso é realmente necessário? tente tirar ou deixar mais elegante
+          calendar_month: new Date().getMonth(), //isso é realmente necessário? tente tirar ou deixar mais elegante e melhore o css
           day: new Date().getDate(),
           months: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
       }
@@ -66,13 +66,12 @@ export default {
   created () {
       this.$store.commit('setMonth', this.calendar_month)
       this.$store.commit('setYear', this.calendar_year)
-      // quase lá, acho que só falta os Events aparecerem
       if ( ( this.year % 4 == 0 && this.year % 100 != 0 ) || (this.year % 400 == 0) ) {
         this.months[1] = 29
       } else {
         this.months[1] = 28
       }
-  } //melhore isso, está muito grande e feio
+  }
 };
 </script>
 
