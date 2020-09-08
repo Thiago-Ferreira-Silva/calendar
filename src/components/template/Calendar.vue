@@ -15,7 +15,7 @@
         <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
       </div>
     </div>
-    <NewEvent />
+    <NewEvent v-if="creatingEvent" />
   </div>
 </template>
 
@@ -29,7 +29,7 @@ import NewEvent from '../event/NewEvent'
 export default {
   name: "Calendar",
   components: { Day, Events, NewEvent },
-  computed: mapState(['settingDefault', 'month', 'year']),
+  computed: mapState(['settingDefault','creatingEvent', 'month', 'year']),
   data: function () {
       return {
           calendar_year: new Date().getFullYear(),
@@ -66,7 +66,7 @@ export default {
   created () {
       this.$store.commit('setMonth', this.calendar_month)
       this.$store.commit('setYear', this.calendar_year)
-      // quase lá, mas ainda precisa de adaptações
+      // quase lá, acho que só falta os Events aparecerem
       if ( ( this.year % 4 == 0 && this.year % 100 != 0 ) || (this.year % 400 == 0) ) {
         this.months[1] = 29
       } else {

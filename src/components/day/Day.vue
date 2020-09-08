@@ -1,5 +1,5 @@
 <template>
-    <div class="day" @click="goToMenu">
+    <div class="day" @click="createEvent">
         {{ day }}/{{ month + 1 }}
     </div>
 </template>
@@ -13,8 +13,8 @@ export default {
         year: { type: Number }
     },
     methods: {
-        goToMenu() {
-            this.$router.push('/menu')
+        createEvent() {
+            this.$store.commit('createEvent', true)
             this.$store.commit('setDate', { day: this.day, month: this.month, year: this.year })
         }
     }

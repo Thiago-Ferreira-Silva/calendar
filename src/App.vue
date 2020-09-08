@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <Header />
-    <Content />
+    <Calendar />
   </div>
 </template>
 
 <script>
 import Header from './components/template/Header'
-import Content from './components/template/Content'
+import Calendar from './components/template/Calendar'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Content
+    Calendar
   }
 }
 </script>

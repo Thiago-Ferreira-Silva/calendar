@@ -44,10 +44,7 @@ export default {
 
             localStorage.setItem(`__calendar_events_${JSON.stringify(this.date)}`, JSON.stringify(events))
 
-            this.$router.push('/')
-            /*
-            me parece uma ótima ideia deixar de usar o router e colocar 'NewEvent' e 'Events' como janelas flutuantes com v-if e props
-            */
+            this.$store.commit('createEvent', false)
         },
         cancel () {
             Object.assign(this.$data, this.$options.data())
