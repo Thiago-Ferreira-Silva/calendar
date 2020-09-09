@@ -33,7 +33,7 @@ export default {
   data: function () {
       return {
           calendar_year: new Date().getFullYear(),
-          calendar_month: new Date().getMonth(), //isso é realmente necessário? tente tirar ou deixar mais elegante e melhore o css
+          calendar_month: new Date().getMonth(),
           day: new Date().getDate(),
           months: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
       }
