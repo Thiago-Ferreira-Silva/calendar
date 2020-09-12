@@ -3,8 +3,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: "Day",
+  computed: mapState(['creatingEvent']),
   props: {
     day: { type: Number },
     month: { type: Number },
@@ -12,7 +15,7 @@ export default {
   },
   methods: {
     createEvent() {
-      this.$store.commit("createEvent", true);
+      this.$store.commit("createEvent", !this.creatingEvent);
       this.$store.commit("setDate", {
         day: this.day,
         month: this.month,

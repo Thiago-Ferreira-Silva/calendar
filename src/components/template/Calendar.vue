@@ -12,6 +12,7 @@
         <div class="day-of-week">S</div>
       </div>
       <div class="days">
+        <div class="empty-space" v-for="n in dayOfWeek" :key="n"></div>
         <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
       </div>
     </div>
@@ -35,6 +36,7 @@ export default {
           calendar_year: new Date().getFullYear(),
           calendar_month: new Date().getMonth(),
           day: new Date().getDate(),
+          dayOfWeek: null,
           months: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
       }
   },
@@ -47,6 +49,7 @@ export default {
         },
         month: function(newMonth) {
             this.calendar_month = newMonth
+            this.dayOfWeek = new Date(this.year, this.month, 1).getDay()
         },
         year: function(newYear) {
                 this.calendar_year = newYear
@@ -71,6 +74,7 @@ export default {
       } else {
         this.months[1] = 28
       }
+      this.dayOfWeek = new Date(this.year, this.month, 1).getDay()
   }
 };
 </script>
