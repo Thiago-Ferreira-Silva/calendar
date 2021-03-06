@@ -49,11 +49,13 @@ export default {
         JSON.stringify(events)
       );
 
-      this.$store.commit("createEvent", false);
+      this.$store.commit('setUpdateEvents', true)
+
+      Object.assign(this.$data, this.$options.data());
+
     },
     cancel() {
       Object.assign(this.$data, this.$options.data());
-      this.$router.push("/");
     },
   },
 };

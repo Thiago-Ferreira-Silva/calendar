@@ -34,5 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
+  max-height: 100vh;
+  overflow: hidden;
 }
 </style>

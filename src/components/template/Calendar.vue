@@ -12,70 +12,81 @@
         <div class="day-of-week">S</div>
       </div>
       <div class="days">
-        <div class="empty-space" v-for="n in dayOfWeek" :key="n"></div>
-        <Day v-for="n in months[month]" :key="n" :year="year" :month="month" :day="n" />
+        <div class="empty-space" v-for="n in dayOfWeek" :key="n + Math.random()"></div>
+        <Day
+          v-for="n in months[month]"
+          :key="n + Math.random()"
+          :year="year"
+          :month="month"
+          :day="n"
+        />
       </div>
     </div>
-    <NewEvent v-if="creatingEvent" />
+    <NewEvent />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 import Day from "../day/Day";
-import Events from '../event/Events'
-import NewEvent from '../event/NewEvent'
+import Events from "../event/Events";
+import NewEvent from "../event/NewEvent";
 
 export default {
   name: "Calendar",
   components: { Day, Events, NewEvent },
-  computed: mapState(['settingDefault','creatingEvent', 'month', 'year']),
+  computed: mapState(["settingDefault", "month", "year"]),
   data: function () {
-      return {
-          calendar_year: new Date().getFullYear(),
-          calendar_month: new Date().getMonth(),
-          day: new Date().getDate(),
-          dayOfWeek: null,
-          months: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-      }
+    return {
+      calendar_year: new Date().getFullYear(),
+      calendar_month: new Date().getMonth(),
+      day: new Date().getDate(),
+      dayOfWeek: null,
+      months: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    };
   },
-    watch: {
-        settingDefault: function(setting) {
-            if(setting) {
-                Object.assign(this.$data, this.$options.data())
-                this.$store.commit('setDefault', false)
-            }
-        },
-        month: function(newMonth) {
-            this.calendar_month = newMonth
-            this.dayOfWeek = new Date(this.year, this.month, 1).getDay()
-        },
-        year: function(newYear) {
-                this.calendar_year = newYear
-                if ( ( newYear % 4 == 0 && newYear % 100 != 0 ) || (newYear % 400 == 0) ) {
-                  this.months[1] = 29
-                } else {
-                  this.months[1] = 28
-                }
-        },
-        calendar_year: function(newYear) {
-          this.$store.commit('setYear', newYear)
-        },
-        calendar_month: function(newMonth) {
-          this.$store.commit('setMonth', newMonth)
-        }
-    },
-  created () {
-      this.$store.commit('setMonth', this.calendar_month)
-      this.$store.commit('setYear', this.calendar_year)
-      if ( ( this.year % 4 == 0 && this.year % 100 != 0 ) || (this.year % 400 == 0) ) {
-        this.months[1] = 29
-      } else {
-        this.months[1] = 28
+  watch: {
+    settingDefault: function (setting) {
+      if (setting) {
+        Object.assign(this.$data, this.$options.data());
+        this.$store.commit("setDefault", false);
       }
-      this.dayOfWeek = new Date(this.year, this.month, 1).getDay()
-  }
+    },
+    month: function (newMonth) {
+      this.calendar_month = newMonth;
+      this.dayOfWeek = new Date(this.year, this.month, 1).getDay();
+    },
+    year: function (newYear) {
+      this.calendar_year = newYear;
+      if ((newYear % 4 == 0 && newYear % 100 != 0) || newYear % 400 == 0) {
+        this.months[1] = 29;
+      } else {
+        this.months[1] = 28;
+      }
+    },
+    calendar_year: function (newYear) {
+      this.$store.commit("setYear", newYear);
+    },
+    calendar_month: function (newMonth) {
+      this.$store.commit("setMonth", newMonth);
+    },
+  },
+  created() {
+    this.$store.commit("setMonth", this.calendar_month);
+    this.$store.commit("setYear", this.calendar_year);
+    this.$store.commit("setDate", {
+      day: 1,
+      month: this.calendar_month,
+      year: this.calendar_year,
+    });
+    if ((this.year % 4 == 0 && this.year % 100 != 0) || this.year % 400 == 0) {
+      this.months[1] = 29;
+    } else {
+      this.months[1] = 28;
+    }
+    this.dayOfWeek = new Date(this.year, this.month, 1).getDay();
+  },
 };
 </script>
 

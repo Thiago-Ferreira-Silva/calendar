@@ -1,7 +1,8 @@
 <template>
   <div class="events">
     <div class="date">{{ date.day }}/{{ date.month + 1 }}</div>
-    <div class="event" v-for="event in events" :key="event.name">
+    <ul>
+    <div class="event" v-for="event in events" :key="event.name + Math.random()">
       <div class="name">{{ event.name }}</div>
       <div class="time">
         <div class="start">Start:{{ event.start }}</div>
@@ -9,6 +10,7 @@
       </div>
       <div class="description">{{ event.description }}</div>
     </div>
+    </ul>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "Events",
-  computed: mapState(["date", "creatingEvent"]),
+  computed: mapState(["date", "updateEvents"]),
   data: function () {
     return {
       events: [],
@@ -31,14 +33,19 @@ export default {
         );
       }
     },
-    creatingEvent: function (creating) {
-      if (!creating) {
+    updateEvents: function (update) {
+      if (update) {
         this.events = JSON.parse(
           localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`)
         );
+        this.$store.commit('setUpdateEvents', false)
       }
-    },
+    }
   },
+  created() {
+    this.events = JSON.parse(
+          localStorage.getItem(`__calendar_events_${JSON.stringify(this.date)}`))
+  }
 };
 </script>
 
@@ -54,6 +61,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.events ul {
+  max-height: 76vh;
+
+  overflow-y: auto;
 }
 
 .event {

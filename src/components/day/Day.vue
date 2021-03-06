@@ -1,21 +1,25 @@
 <template>
-  <div class="day" @click="createEvent">{{ day }}</div>
+  <div class="day" :class="{ selected }" @click="setSelected">{{ day }}</div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
 
 export default {
   name: "Day",
-  computed: mapState(['creatingEvent']),
+  computed: mapState(["date"]),
   props: {
     day: { type: Number },
     month: { type: Number },
     year: { type: Number },
   },
+  data: function () {
+    return {
+      selected: false
+    }
+  },
   methods: {
-    createEvent() {
-      this.$store.commit("createEvent", !this.creatingEvent);
+    setSelected() {
       this.$store.commit("setDate", {
         day: this.day,
         month: this.month,
@@ -23,6 +27,20 @@ export default {
       });
     },
   },
+  watch: {
+    date: function (newDate) {
+      if (this.day === newDate.day && this.month === newDate.month && this.year === newDate.year) {
+        this.selected = true
+      } else {
+        this.selected = false
+      }
+    }
+  },
+  created() {
+    if (this.day === this.date.day && this.month === this.date.month && this.year === this.date.year) {
+        this.selected = true
+      }
+  }
 };
 </script>
 
@@ -40,5 +58,13 @@ export default {
 .day:hover {
   background-color: #333;
   cursor: default;
+}
+
+.selected {
+  background-color: #55f;
+}
+
+.selected:hover {
+  background-color: #88f;
 }
 </style>

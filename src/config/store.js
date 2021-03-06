@@ -9,7 +9,7 @@ export default new Vuex.Store({
         year: null,
         date: null,
         settingDefault: false,
-        creatingEvent: false
+        updateEvents: false
     },
     mutations: {
         setMonth(state, month) {
@@ -24,8 +24,8 @@ export default new Vuex.Store({
         setDefault(state, settingDefault) {
             state.settingDefault = settingDefault
         },
-        createEvent(state, creatingEvent) {
-            state.creatingEvent = creatingEvent
+        setUpdateEvents(state, update) {
+            state.updateEvents = update
         }
     }
 })
