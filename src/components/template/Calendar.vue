@@ -76,7 +76,7 @@ export default {
     this.$store.commit("setMonth", this.calendar_month);
     this.$store.commit("setYear", this.calendar_year);
     this.$store.commit("setDate", {
-      day: 1,
+      day: this.day,
       month: this.calendar_month,
       year: this.calendar_year,
     });
